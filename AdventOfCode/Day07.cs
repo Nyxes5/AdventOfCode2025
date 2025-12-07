@@ -3,12 +3,10 @@ namespace AdventOfCode;
 public sealed class Day07 : BaseDay
 {
     private readonly string[] _input;
-    private readonly int _startColumn;
 
     public Day07()
     {
         _input = File.ReadAllLines(InputFilePath);
-        _startColumn = _input[0].IndexOf('S');
     }
 
     public override ValueTask<string> Solve_1() => new(CalculateResults().ToString());
@@ -19,7 +17,7 @@ public sealed class Day07 : BaseDay
     {
         var splitCount = 0;
         
-        var beams = new Dictionary<int, long> { [_startColumn] = 1 };
+        var beams = new Dictionary<int, long> { [_input[0].IndexOf('S')] = 1 };
         
         for (var row = 1; row < _input.Length; row++)
         {
