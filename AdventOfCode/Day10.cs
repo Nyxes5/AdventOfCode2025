@@ -44,6 +44,13 @@ public sealed class Day10 : BaseDay
         return new Machine(targetState, buttons.ToArray(), joltageRequirements);
     }
 
+    // Example: [.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}
+    // Matrix:
+    //        B0  B1  B2  B3  B4  B5 | Target
+    // L0: [  0   0   0   0   1   1  |   0   ]
+    // L1: [  0   1   0   0   0   1  |   1   ]
+    // L2: [  0   0   1   0   1   0  |   1   ]
+    // L3: [  1   1   0   1   0   0  |   0   ]
     private static int SolveMachine(Machine machine)
     {
         var numLights = machine.TargetState.Length;
@@ -63,6 +70,13 @@ public sealed class Day10 : BaseDay
         return SolveMatrix(matrix, numLights, numButtons);
     }
 
+    // Example: [.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}
+    // Matrix:
+    //        B0  B1  B2  B3  B4  B5 | Target
+    // L0: [  0   0   0   0   1   1  |   3   ]
+    // L1: [  0   1   0   0   0   1  |   5   ]
+    // L2: [  0   0   1   0   1   0  |   4   ]
+    // L3: [  1   1   0   1   0   0  |   7   ]
     private static int SolveJoltageMachine(Machine machine)
     {
         var numCounters = machine.JoltageRequirements.Length;
